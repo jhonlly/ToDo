@@ -16,18 +16,16 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="19dp"
-        android:layout_marginStart="19dp"
         android:text="Titulo"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="8dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignRight="@+id/textView7"
+        android:layout_alignEnd="@+id/textView7" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/etTarea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -46,19 +44,20 @@
         android:text="Estado"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/etTarea"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <RadioGroup
+        android:id="@+id/groupEstado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_below="@+id/textView7"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:orientation="horizontal"
-        android:id="@+id/radioGroup">
+        android:layout_below="@+id/textView7"
+        android:layout_marginTop="11dp"
+        android:checkedButton="@+id/radioSinRealizar"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioDone"
@@ -73,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:checked="true"
+            android:checked="false"
             android:text="Sin realizar" />
 
     </RadioGroup>
@@ -84,20 +83,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/radioGroup"
+        android:layout_below="@+id/groupEstado"
         android:layout_marginTop="27dp"
         android:text="Prioridad"
         android:textStyle="bold" />
 
     <RadioGroup
+        android:id="@+id/groupPrioridad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:layout_below="@+id/tvPrioridad"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/radioGroup2">
+        android:layout_below="@+id/tvPrioridad"
+        android:layout_marginTop="16dp"
+        android:checkedButton="@+id/radioMedia"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioBajo"
@@ -108,21 +108,20 @@
             android:text="Baja" />
 
         <RadioButton
-            android:id="@+id/radioButton10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:paddingRight="30dp"
-            android:text="Alta" />
-
-        <RadioButton
-            android:id="@+id/radioButton9"
+            android:id="@+id/radioMedia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingRight="30dp"
             android:text="Media" />
+
+        <RadioButton
+            android:id="@+id/radioAlta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="30dp"
+            android:text="Alta" />
     </RadioGroup>
 
     <EditText
@@ -131,12 +130,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/radioGroup2"
+        android:layout_below="@+id/groupPrioridad"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Fecha"
         android:inputType="textPersonName"
-        android:paddingLeft="20dp" />
+        android:paddingLeft="20dp"
+        android:onClick="fecha"
+        tools:clickable="true" />
 
     <EditText
         android:id="@+id/etHora"
@@ -147,7 +148,9 @@
         android:layout_toStartOf="@+id/etFecha"
         android:ems="10"
         android:hint="Hora"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:onClick="hora"
+        tools:clickable="true" />
 
     <Button
         android:id="@+id/btnCancelar"
@@ -157,7 +160,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="47dp"
-        android:text="Cancela" />
+        android:text="Cancela"
+        android:onClick="finalizar"/>
 
     <Button
         android:id="@+id/btnLimpiar"
@@ -165,7 +169,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/btnCancelar"
         android:layout_centerHorizontal="true"
-        android:text="Limpiar" />
+        android:text="Limpiar"
+        android:onClick="limpiarCAmpos"/>
 
     <Button
         android:id="@+id/btnGuardar"

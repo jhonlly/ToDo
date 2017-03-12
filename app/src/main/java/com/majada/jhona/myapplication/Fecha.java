@@ -18,12 +18,12 @@ public class Fecha extends DialogFragment implements DatePickerDialog.OnDateSetL
         int mYear = c.get(Calendar.YEAR); // current year
         int mMonth = c.get(Calendar.MONTH); // current month
         int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-        return new DatePickerDialog(getActivity(),this, mYear, mMonth,mDay);
+        return new DatePickerDialog(getActivity(),this, mYear, mMonth,(mDay + 7));
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         EditText textFecha = (EditText) getActivity().findViewById(R.id.etFecha);
-        textFecha.setText(dayOfMonth + "/" + ( month + 1) + "/" + year);
+        textFecha.setText((dayOfMonth ) + "/" + ( month + 1) + "/" + year);
     }
 }
