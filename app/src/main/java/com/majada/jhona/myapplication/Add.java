@@ -2,18 +2,16 @@ package com.majada.jhona.myapplication;
 
 import android.app.DialogFragment;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-
+import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -26,6 +24,7 @@ public class Add extends AppCompatActivity {
         setContentView(R.layout.activity_add);
         textHora =(EditText) findViewById(R.id.etHora);
         textFecha = (EditText) findViewById(R.id.etFecha);
+
         textTitulo = (EditText) findViewById(R.id.etTarea);
         estado =(RadioGroup) findViewById(R.id.groupEstado);
         prioridad =(RadioGroup) findViewById(R.id.groupPrioridad);
@@ -59,20 +58,48 @@ public class Add extends AppCompatActivity {
        // textFecha.setText( );
     }
 
-    public void agreegarDatos(){
-        SharedPreferences preferencias = getSharedPreferences("datos", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferencias.edit();
-        editor.putString("Tarea: ", textTitulo.getText().toString());
+    public void agregarDatos(View v){
+        AdminSQLite admin = new AdminSQLite(this,
+                "ToDo", null, 1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+        ContentValues registro = new ContentValues();
+        registro.put("tarea", textTitulo.getText().toString());
+        registro.put("fecha", textFecha.getText().toString());
+        registro.put("hora", textHora.getText().toString());
+
         if(estado.getCheckedRadioButtonId()== R.id.radioSinRealizar) {
-            editor.putBoolean("Estado", true);
+            registro.put("estado", 1);
         }else{
-            editor.putBoolean("Estado", false);
+            registro.put("estado", 0);
         }
+
+        switch (prioridad.getCheckedRadioButtonId()){
+            case R.id.radioBajo:
+                registro.put("prioridad", "Low");
+                break;
+            case R.id.radioMedia:
+                registro.put("prioridad", "Medium");
+                break;
+            case R.id.radioAlta:
+                registro.put("prioridad", "Hight");
+                break;
+            default:
+                break;
+        }
+
+
+        bd.insert("tareas", null, registro);
+        Toast.makeText(this, "Se guardo la tarea",
+                Toast.LENGTH_SHORT).show();
+        textHora.setText("");
+        textFecha.setText("");
+        textTitulo.setText("");
+        fechaHoraPorDefecto();
     }
 
-    public void botonChequeado(View v){
+    /*public void botonChequeado(View v){
         if(estado.getCheckedRadioButtonId()== R.id.radioSinRealizar){
 
         }
-    }
+    }*/
 }

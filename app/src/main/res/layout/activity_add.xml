@@ -179,6 +179,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/btnLimpiar"
+        android:onClick="agregarDatos"
         android:text="Guardar" />
 
 </RelativeLayout>

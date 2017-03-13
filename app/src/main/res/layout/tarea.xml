@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tareaList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tarea" />
+
+    <CheckBox
+        android:id="@+id/check_list"
+        android:layout_width="123dp"
+        android:layout_height="wrap_content"
+        android:text="Realizada" />
+
+    <TextView
+        android:id="@+id/prioridad"
+        android:layout_width="141dp"
+        android:layout_height="wrap_content"
+        android:text="Priodidad" />
+
+    <TextView
+        android:id="@+id/fecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha" />
+
+</RelativeLayout>
