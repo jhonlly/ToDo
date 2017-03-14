@@ -13,7 +13,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class Principal extends ListActivity {
+public class Principal extends AppCompatActivity {
     private ListView listaTareas;
 
     private Button add;
@@ -21,7 +21,7 @@ public class Principal extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-       listaTareas =(ListView) findViewById(R.id.list);
+       listaTareas =(ListView) findViewById(R.id.lvTareas);
        AdminSQLite admin = new AdminSQLite(this,"ToDo", null, 1);
        SQLiteDatabase bd = admin.getWritableDatabase();
        Cursor fila = bd.rawQuery("select tarea, estado ,prioridad, fecha, hora from tareas ", null);
@@ -32,11 +32,11 @@ public class Principal extends ListActivity {
                         fila.getString(2));
             } while (fila.moveToNext());
         }
-        setContentView(R.layout.activity_principal);
+       // setContentView(R.layout.activity_principal);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, registros);
         View v = getLayoutInflater().inflate(R.layout.footer, null);
         listaTareas.addFooterView(v);
-        setListAdapter(new Tarea(this, (Vector) fila));
+        //setListAdapter(new Tarea(this, (Vector) fila));
         listaTareas.setAdapter(adapter);
         bd.close();
     }

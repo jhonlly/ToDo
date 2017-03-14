@@ -68,9 +68,9 @@ public class Add extends AppCompatActivity {
         registro.put("hora", textHora.getText().toString());
 
         if(estado.getCheckedRadioButtonId()== R.id.radioSinRealizar) {
-            registro.put("estado", 1);
+            registro.put("estado", "Not Done");
         }else{
-            registro.put("estado", 0);
+            registro.put("estado", "Done");
         }
 
         switch (prioridad.getCheckedRadioButtonId()){
