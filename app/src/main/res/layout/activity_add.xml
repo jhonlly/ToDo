@@ -16,13 +16,13 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Titulo"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="8dp"
+        android:layout_alignEnd="@+id/textView7"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/textView7"
-        android:layout_alignEnd="@+id/textView7" />
+        android:layout_marginTop="8dp"
+        android:text="Title"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/etTarea"
@@ -33,15 +33,15 @@
         android:layout_below="@+id/textView6"
         android:layout_marginTop="17dp"
         android:ems="10"
-        android:hint="Inserte la tarea"
+        android:hint="Enter title"
         android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Estado"
+        android:layout_marginTop="13dp"
+        android:text="Status"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_below="@+id/etTarea"
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Hecho" />
+            android:text="Done" />
 
         <RadioButton
             android:id="@+id/radioSinRealizar"
@@ -73,7 +73,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:checked="false"
-            android:text="Sin realizar" />
+            android:text="Not Done" />
 
     </RadioGroup>
 
@@ -85,7 +85,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/groupEstado"
         android:layout_marginTop="27dp"
-        android:text="Prioridad"
+        android:text="Priority"
         android:textStyle="bold" />
 
     <RadioGroup
@@ -101,27 +101,27 @@
 
         <RadioButton
             android:id="@+id/radioBajo"
-            android:layout_width="wrap_content"
+            android:layout_width="101dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:paddingRight="30dp"
-            android:text="Baja" />
+            android:text="Low"
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/radioMedia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:paddingRight="30dp"
-            android:text="Media" />
+            android:text="Medium"
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/radioAlta"
-            android:layout_width="wrap_content"
+            android:layout_width="104dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:paddingRight="30dp"
-            android:text="Alta" />
+            android:text="High"
+            android:textSize="12sp" />
     </RadioGroup>
 
     <EditText
@@ -133,10 +133,10 @@
         android:layout_below="@+id/groupPrioridad"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Fecha"
+        android:hint="Date"
         android:inputType="textPersonName"
-        android:paddingLeft="20dp"
         android:onClick="fecha"
+        android:paddingLeft="20dp"
         tools:clickable="true" />
 
     <EditText
@@ -147,7 +147,7 @@
         android:layout_toLeftOf="@+id/etFecha"
         android:layout_toStartOf="@+id/etFecha"
         android:ems="10"
-        android:hint="Hora"
+        android:hint="Time"
         android:inputType="textPersonName"
         android:onClick="hora"
         tools:clickable="true" />
@@ -160,8 +160,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="47dp"
-        android:text="Cancela"
-        android:onClick="finalizar"/>
+        android:onClick="finalizar"
+        android:text="Cancel" />
 
     <Button
         android:id="@+id/btnLimpiar"
@@ -169,17 +169,18 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/btnCancelar"
         android:layout_centerHorizontal="true"
-        android:text="Limpiar"
-        android:onClick="limpiarCAmpos"/>
+        android:onClick="limpiarCAmpos"
+        android:text="Reset" />
 
     <Button
         android:id="@+id/btnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnLimpiar"
+        android:layout_alignBottom="@+id/btnLimpiar"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/btnLimpiar"
         android:onClick="agregarDatos"
-        android:text="Guardar" />
+        android:text="Submit" />
 
 </RelativeLayout>

@@ -13,8 +13,6 @@
         android:onClick="add"
         android:padding="14dp"
         android:text="Add New ToDo Item"
-
-        android:textAlignment="center"
         tools:clickable="true" />
 
 </LinearLayout>
