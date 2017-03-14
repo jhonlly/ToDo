@@ -7,24 +7,44 @@
         android:id="@+id/tareaList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tarea" />
+        android:text="Tarea"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <CheckBox
-        android:id="@+id/check_list"
+        android:id="@+id/checkTarea"
         android:layout_width="123dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tareaList"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+        android:checked="false"
+        android:duplicateParentState="false"
         android:text="Realizada" />
 
     <TextView
-        android:id="@+id/prioridad"
+        android:id="@+id/prioridadTarea"
         android:layout_width="141dp"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkTarea"
+        android:layout_alignBottom="@+id/checkTarea"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="Priodidad" />
 
     <TextView
-        android:id="@+id/fecha"
+        android:id="@+id/fechaTarea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkTarea"
+        android:layout_marginTop="9dp"
         android:text="Fecha" />
 
 </RelativeLayout>

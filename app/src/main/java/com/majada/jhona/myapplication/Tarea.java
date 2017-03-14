@@ -1,52 +1,55 @@
 package com.majada.jhona.myapplication;
 
-import android.app.Activity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import java.util.Vector;
+public class Tarea{
+    private  String titulo, estado, prioridad, fecha, hora;
 
-
-public class Tarea extends BaseAdapter{
-    private final Activity actividad;
-    private final Vector lista;
-
-
-    public Tarea(Activity actividad, Vector lista) {
-        super();
-        this.actividad = actividad;
-        this.lista = lista;
+    public Tarea(String titulo, String estado, String prioridad, String fecha, String hora) {
+        this.titulo = titulo;
+        this.estado = estado;
+        this.prioridad = prioridad;
+        this.fecha = fecha;
+        this.hora = hora;
     }
 
-    @Override
-    public int getCount() {
-        return lista.size();
+    public String getEstado() {
+        return estado;
     }
 
-    @Override
-    public Object getItem(int position) {
-        return lista.elementAt(position);
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    @Override
-    public long getItemId(int position) {
-        return position;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = actividad.getLayoutInflater();
-        View view = inflater.inflate(R.layout.tarea, null, true);
-        TextView tituloTarea =(TextView)view.findViewById(R.id.tareaList);
-        //TextView fechaTarea =(TextView)view.findViewById(R.id.fe);
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
 
-        tituloTarea.setText((Integer) lista.elementAt(position));
-        //fechaTarea.setText((Integer) lista.elementAt(position));
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 
-        return view;
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public String getTitulo() {
+
+        return titulo;
     }
 }

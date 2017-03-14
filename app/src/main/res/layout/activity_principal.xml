@@ -12,26 +12,11 @@
     tools:context="com.majada.jhona.myapplication.Principal">
 
    <ListView
-        android:id="@+id/lvTareas"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <!--<FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="@android:">
-
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:drawSelectorOnTop="false" />
-        <TextView
-            android:id="@android:id/empty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="No hay puntuaciones" />
-    </FrameLayout>-->
+       android:id="@+id/lvTareas"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true"
+       android:footerDividersEnabled="false" />
 
 </LinearLayout>
