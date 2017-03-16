@@ -3,6 +3,7 @@ package com.majada.jhona.myapplication;
 import android.app.DialogFragment;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,6 +43,9 @@ public class Add extends AppCompatActivity {
     }
 
     public void finalizar(View v){
+        //Realizo una llamada a la actividad principal para que se vuelvan a cargar los datos ingresados.
+        Intent i = new Intent(Add.this, Principal.class);
+        startActivity(i);
         finish();
     }
 
@@ -89,17 +93,12 @@ public class Add extends AppCompatActivity {
 
 
         bd.insert("tareas", null, registro);
-        Toast.makeText(this, "Se guardo la tarea",
-                Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Se guardo la tarea", Toast.LENGTH_SHORT).show();
         textHora.setText("");
         textFecha.setText("");
         textTitulo.setText("");
         fechaHoraPorDefecto();
     }
 
-    /*public void botonChequeado(View v){
-        if(estado.getCheckedRadioButtonId()== R.id.radioSinRealizar){
 
-        }
-    }*/
 }

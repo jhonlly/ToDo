@@ -1,11 +1,8 @@
 package com.majada.jhona.myapplication;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,11 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,36 +29,12 @@ public class Principal extends AppCompatActivity {
        listaTareas =(ListView) findViewById(R.id.lvTareas);
        AdminSQLite admin = new AdminSQLite(this,"ToDo", null, 1);
         //Acciones sobre los elementos.
-        listaTareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                final int posicion=i;
-                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(Principal.this);
-                dialogo1.setTitle("Importante");
-                dialogo1.setMessage("¿ Elimina este teléfono ?");
-                dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        TextView date =(TextView) findViewById(R.id.fechaTarea);
-
-                        date.setText("lalalalal");
-                    }
-                });
-                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                    }
-                });
-                dialogo1.show();
-
-                ///return false;
-            }
-        });
        SQLiteDatabase bd = admin.getWritableDatabase();
-       Cursor fila = bd.rawQuery("select tarea, estado ,prioridad, fecha, hora from tareas ", null);
+       Cursor fila = bd.rawQuery("select tarea, estado ,prioridad, fecha, hora, id from tareas ", null);
         registros = new ArrayList<Tarea>();
         if (fila.moveToFirst()) {
             do {
-                 registros.add( new Tarea( fila.getString(0), fila.getString(1),fila.getString(2), fila.getString(3),fila.getString(4)));
+                 registros.add( new Tarea( fila.getString(0), fila.getString(1),fila.getString(2), fila.getString(3),fila.getString(4), fila.getInt(5)));
 
             } while (fila.moveToNext());
         }
@@ -72,23 +43,35 @@ public class Principal extends AppCompatActivity {
         AdaptadorTareas adaptador = new AdaptadorTareas(this);
         ListView lv1 = (ListView)findViewById(R.id.lvTareas);
         lv1.setAdapter(adaptador);
+        //Eliminar lista de tareas
         bd.close();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listaTareas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AdminSQLite admin = new AdminSQLite(Principal.this,"ToDo", null, 1);
+                //Acciones sobre los elementos.
+                final SQLiteDatabase bd = admin.getWritableDatabase();
+                int cant = bd.delete("tareas", "id=" + registros.get(position).getId(), null);
+
+                bd.close();
+                Intent i = new Intent(Principal.this, Principal.class);
+                startActivity(i);
+                finish();
+                return false;
+            }
+        });
+
+    }
+
     //Abrir activity de añadir al realizar click en el footer
     public void add(View v){
         Intent i = new Intent(this, Add.class );
         startActivity(i);
-    }
-
-
-    public void notificacion(View v){
-        TextView fecha  = (TextView) findViewById(R.id.fechaTarea);
-        Context context = getApplicationContext();
-        CharSequence text = "Hello toast!"+ fecha.getText().toString();
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
     }
 
     class AdaptadorTareas  extends ArrayAdapter<Tarea>{

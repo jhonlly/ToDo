@@ -3,13 +3,23 @@ package com.majada.jhona.myapplication;
 
 public class Tarea{
     private  String titulo, estado, prioridad, fecha, hora;
+    private int id;
 
-    public Tarea(String titulo, String estado, String prioridad, String fecha, String hora) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Tarea(String titulo, String estado, String prioridad, String fecha, String hora, int id) {
         this.titulo = titulo;
         this.estado = estado;
         this.prioridad = prioridad;
         this.fecha = fecha;
         this.hora = hora;
+        this.id= id;
     }
 
     public String getEstado() {
