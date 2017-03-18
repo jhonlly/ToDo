@@ -59,7 +59,6 @@ public class Add extends AppCompatActivity {
         Date date = new Date();
         DateFormat hourFormat = new SimpleDateFormat("HH:mm");
         textHora.setText(hourFormat.format(date));
-       // textFecha.setText( );
     }
 
     public void agregarDatos(View v){
@@ -94,10 +93,8 @@ public class Add extends AppCompatActivity {
 
         bd.insert("tareas", null, registro);
         Toast.makeText(this, "Se guardo la tarea", Toast.LENGTH_SHORT).show();
-        textHora.setText("");
-        textFecha.setText("");
-        textTitulo.setText("");
-        fechaHoraPorDefecto();
+        bd.close();
+        finish();
     }
 
 

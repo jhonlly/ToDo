@@ -15,9 +15,9 @@ public class Fecha extends DialogFragment implements DatePickerDialog.OnDateSetL
          DatePickerDialog calendario;
 
         final Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR); // current year
-        int mMonth = c.get(Calendar.MONTH); // current month
-        int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
         return new DatePickerDialog(getActivity(),this, mYear, mMonth,(mDay + 7));
     }
 
