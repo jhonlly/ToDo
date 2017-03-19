@@ -13,10 +13,14 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
 public class Add extends AppCompatActivity {
+    Date mDate;
+    private static final int SEVEN_DAYS = 604800000;
+    private static String dateString, timeString;
     private EditText textFecha, textHora, textTitulo;
     private RadioGroup estado, prioridad;
     @Override
@@ -32,7 +36,7 @@ public class Add extends AppCompatActivity {
         fechaHoraPorDefecto();
     }
 
-    public void hora(){
+    public void hora(View v){
         DialogFragment horaFrament = new Hora();
         horaFrament.show(getFragmentManager(), "TimePicker");
     }
@@ -43,22 +47,48 @@ public class Add extends AppCompatActivity {
     }
 
     public void finalizar(View v){
-        //Realizo una llamada a la actividad principal para que se vuelvan a cargar los datos ingresados.
-        Intent i = new Intent(Add.this, Principal.class);
-        startActivity(i);
         finish();
     }
 
+    //Restaurar campos por defecto.
     public void limpiarCAmpos(View v){
-        textHora.setText("");
-        textFecha.setText("");
+        estado.check(R.id.radioSinRealizar);
+        prioridad.check(R.id.radioMedia);
         textTitulo.setText("");
     }
-
+//Metodo que configura la hora por defecto en los campos editext.
     public void fechaHoraPorDefecto(){
-        Date date = new Date();
-        DateFormat hourFormat = new SimpleDateFormat("HH:mm");
-        textHora.setText(hourFormat.format(date));
+        mDate = new Date();
+        mDate = new Date(mDate.getTime() + SEVEN_DAYS);
+        Calendar c = Calendar.getInstance();
+        c.setTime(mDate);
+        setDateString(c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH));
+        textFecha.setText(dateString);
+        setTimeString(c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE),
+                c.get(Calendar.MILLISECOND));
+        textHora.setText(timeString);
+
+    }
+    private static void setTimeString(int hourOfDay, int minute, int mili) {
+        String hour = "" + hourOfDay;
+        String min = "" + minute;
+        if (hourOfDay < 10)
+            hour = "0" + hourOfDay;
+        if (minute < 10)
+            min = "0" + minute;
+        timeString = hour + ":" + min + ":00";
+    }
+
+    private static void setDateString(int year, int monthOfYear, int dayOfMonth) {
+        monthOfYear++;
+        String mon = "" + monthOfYear;
+        String day = "" + dayOfMonth;
+        if (monthOfYear < 10)
+            mon = "0" + monthOfYear;
+        if (dayOfMonth < 10)
+            day = "0" + dayOfMonth;
+        dateString = year + "/" + mon + "/" + day;
     }
 
     public void agregarDatos(View v){
@@ -89,8 +119,6 @@ public class Add extends AppCompatActivity {
             default:
                 break;
         }
-
-
         bd.insert("tareas", null, registro);
         Toast.makeText(this, "Se guardo la tarea", Toast.LENGTH_SHORT).show();
         bd.close();

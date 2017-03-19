@@ -12,8 +12,6 @@ import java.util.Calendar;
 public class Fecha extends DialogFragment implements DatePickerDialog.OnDateSetListener{
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
-         DatePickerDialog calendario;
-
         final Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);

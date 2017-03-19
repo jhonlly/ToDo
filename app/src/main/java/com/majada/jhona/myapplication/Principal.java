@@ -45,44 +45,43 @@ public class Principal extends AppCompatActivity {
 
             } while (fila.moveToNext());
         }
-        //View v = getLayoutInflater().inflate(R.layout.footer, null);
-        //listaTareas.addFooterView(v);
         AdaptadorTareas adaptador = new AdaptadorTareas(this);
         ListView lv1 = (ListView)findViewById(R.id.lvTareas);
         lv1.setAdapter(adaptador);
-        //Eliminar elementos.
+        //Eliminar tareas de la lista
         listaTareas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-               //Confirmación a la hora de eliminar las tareas.
+               //Añado una notificacion para eliminar elementos de la lista.
                 AlertDialog.Builder notificacionEliminar = new AlertDialog.Builder(Principal.this);
-                notificacionEliminar.setTitle("Importante");
-                notificacionEliminar.setMessage("¿ Elimina esta tarea?");
+                notificacionEliminar.setTitle("¡Importante!");
+                notificacionEliminar.setMessage("¿ Desea eliminar la tarea?");
                 notificacionEliminar.setCancelable(false);
                 //Al precionar el botón confirmas para eliminar el elemento
                 notificacionEliminar.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
+                        //Realizo una nueva conexión a la base de datos para eliminar el elemento.
                         AdminSQLite admin = new AdminSQLite(Principal.this,"ToDo", null, 1);
                         //Acciones sobre los elementos.
                         final SQLiteDatabase bd = admin.getWritableDatabase();
+                        //Elimino la tare por el identificador.
                         bd.delete("tareas", "id=" + registros.get(position).getId(), null);
                         Intent i = new Intent(Principal.this, Principal.class);
                         startActivity(i);
                         bd.close();
-                        finish();
+                      //  finish();
                     }
                 });
-                //Negativo
+                //Al seleccionar la opcion de cancelar no realizo ninguna acción.
                 notificacionEliminar.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                     }
                 });
                 notificacionEliminar.show();
-
                 return false;
             }
         });
-        //Llamada a la vista de modificar.
+        //Llamada a la actividad de modificar parandole los parametros.
         listaTareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -102,7 +101,7 @@ public class Principal extends AppCompatActivity {
         bd.close();
     }
 
-    //Abrir activity de añadir al realizar click en el footer
+    //Abrir activity de Add al realizar click en el footer
     public void add(View v){
         Intent i = new Intent(this, Add.class );
         startActivity(i);

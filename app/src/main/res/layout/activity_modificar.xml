@@ -121,29 +121,30 @@
         android:id="@+id/etFechaM"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/groupPrioridadM"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="38dp"
         android:ems="10"
         android:hint="Date"
         android:inputType="textPersonName"
         android:onClick="fecha"
         android:paddingLeft="20dp"
-        tools:clickable="true" />
+        tools:clickable="true"
+        android:layout_below="@+id/groupPrioridadM"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/etHoraM"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/etFechaM"
-        android:layout_toLeftOf="@+id/etFechaM"
-        android:layout_toStartOf="@+id/etFechaM"
         android:ems="10"
         android:hint="Time"
         android:inputType="textPersonName"
         android:onClick="hora"
-        tools:clickable="true" />
+        tools:clickable="true"
+        android:layout_alignBaseline="@+id/etFechaM"
+        android:layout_alignBottom="@+id/etFechaM"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
 
     <Button
         android:id="@+id/btnCancelarM"
